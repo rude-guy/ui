@@ -1,1 +1,4 @@
-console.log(13123);
+import '@/namespace';
+import messageManager from '@/messageManager';
+
+messageManager.init();
