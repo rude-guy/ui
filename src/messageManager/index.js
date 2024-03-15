@@ -1,4 +1,5 @@
 import message from '@/message';
+import loader from '../loader';
 
 class MessageManager {
   constructor() {
@@ -6,18 +7,12 @@ class MessageManager {
   }
 
   init() {
-    this.message.receive('test_ui', (msg) => {
-      console.log('渲染线程接收到 test消息', msg);
-    });
-
-    setTimeout(() => {
-      this.message.send({
-        type: 'test_ui2',
-        body: {
-          data: 'test_ui2 消息',
-        },
+    this.message.receive('loadResource', (msg) => {
+      const { appId } = msg;
+      loader.loadResources({
+        appId,
       });
-    }, 2000);
+    });
   }
 }
 
