@@ -1,4 +1,5 @@
 import message from '@/message';
+import { PageModule } from './PageModule';
 
 class Loader {
   constructor() {
@@ -46,6 +47,11 @@ class Loader {
       };
       document.body.appendChild(script);
     });
+  }
+
+  createPageModule(moduleInfo) {
+    const { path } = moduleInfo;
+    this.staticModules.set(path, new PageModule(moduleInfo));
   }
 }
 
