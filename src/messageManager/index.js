@@ -13,6 +13,9 @@ class MessageManager {
         appId,
       });
     });
+    this.message.receive('setInitialData', (msg) => {
+      loader.setInitialData(msg.initialData);
+    });
   }
 }
 

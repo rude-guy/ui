@@ -53,6 +53,16 @@ class Loader {
     const { path } = moduleInfo;
     this.staticModules.set(path, new PageModule(moduleInfo));
   }
+
+  setInitialData(initialData) {
+    for (let [path, data] of Object.entries(initialData)) {
+      const staticModule = this.staticModules.get(path);
+      if (!staticModule) {
+        continue;
+      }
+      staticModule.setInitialData(data);
+    }
+  }
 }
 
 export default new Loader();
