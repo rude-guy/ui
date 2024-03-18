@@ -63,6 +63,10 @@ class Loader {
       staticModule.setInitialData(data);
     }
   }
+
+  getModuleByPath(path) {
+    return this.staticModules.get(path);
+  }
 }
 
 export default new Loader();
