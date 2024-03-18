@@ -33,8 +33,16 @@ class RuntimeManager {
     );
   }
 
+  updateModule(opts) {
+    const { id, data } = opts;
+    const viewModule = this.uiInstance[id];
+    for (const key in data) {
+      Vue.set(viewModule, key, data[key]);
+    }
+  }
+
   makeVueOptions(opts) {
-    const { path, bridgeId } = opts;
+    const { path } = opts;
     const staticModule = loader.getModuleByPath(path);
     const self = this;
 
@@ -42,6 +50,11 @@ class RuntimeManager {
       data() {
         return {
           ...staticModule.data,
+        };
+      },
+      beforeCreate() {
+        this._bridgeInfo = {
+          id: self.pageId,
         };
       },
       created() {

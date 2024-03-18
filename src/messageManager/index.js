@@ -21,6 +21,9 @@ class MessageManager {
         bridgeId,
       });
     });
+    this.message.receive('updateModule', (msg) => {
+      runtimeManager.updateModule(msg);
+    });
   }
 }
 
