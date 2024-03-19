@@ -7,7 +7,7 @@ class Loader {
   }
 
   loadResources(opts) {
-    const { appId } = opts;
+    const { appId, pages } = opts;
     const viewResourcePath = `/mini_resource/${appId}/view.js`;
     const styleResourcePath = `/mini_resource/${appId}/style.css`;
     const script = document.createElement('script');
@@ -18,6 +18,10 @@ class Loader {
       this.loadScriptFile(script, viewResourcePath),
     ])
       .then(() => {
+        // 初始化pageModuleInfo
+        pages.forEach((path) => {
+          global.modRequire(path);
+        });
         message.send({
           type: 'uiResourceLoaded',
           body: {},

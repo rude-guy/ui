@@ -8,9 +8,10 @@ class MessageManager {
 
   init() {
     this.message.receive('loadResource', (msg) => {
-      const { appId } = msg;
+      const { appId, pages } = msg;
       loader.loadResources({
         appId,
+        pages,
       });
     });
     this.message.receive('setInitialData', (msg) => {
