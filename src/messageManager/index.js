@@ -25,6 +25,9 @@ class MessageManager {
     this.message.receive('updateModule', (msg) => {
       runtimeManager.updateModule(msg);
     });
+    this.message.receive('showToast', (msg) => {
+      window.wxComponentsAPI.showToast(msg);
+    });
   }
 }
 
