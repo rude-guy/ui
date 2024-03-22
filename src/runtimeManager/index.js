@@ -47,6 +47,7 @@ class RuntimeManager {
     const self = this;
 
     return {
+      _scopeId: staticModule.moduleInfo.scopeId,
       data() {
         return {
           ...staticModule.data,
